@@ -1,0 +1,113 @@
+MOV ACC,CTE	# Cargar la constante X en el ACC
+X	
+MOV DPTR, ACC	# Apuntar a la dirección de ACC
+MOV ACC, [DPTR]	# Cargar X en el ACC
+MOV A, ACC	# Mover ACC en A	
+ 
+MOV ACC, CTE # Cargar la constante iterador en el ACC
+IT 
+MOV DPTR, ACC # Apuntar a la dirección de ACC
+MOV ACC, A # Sumar A y guardarlo en ACC
+MOV [DPTR], ACC # Cargar X en ITERADOR
+
+CARG_TAM: MOV ACC, CTE # Cargar la constante TAM en el ACC
+TAM
+MOV DPTR, ACC # Apuntar a la dirección de ACC
+MOV ACC, [DPTR] # Cargar TAM en ACC
+INV ACC # C1 de TAM
+MOV A, ACC # Mover el resultado de ACC a A
+MOV ACC, CTE # Cargar la variable Y en el ACC
+Y
+ADD ACC, A # Sumar A a ACC -> TAM (C2)
+MOV A, ACC # Guardar en A en ACC
+ 
+MOV ACC, CTE # Cargar la constante IT en el ACC
+IT
+MOV DPTR, ACC # Apuntar a la dirección de ACC
+MOV ACC, [DPTR] # Cargar [IT] en ACC
+ADD ACC, A # SE SUMA ACC Y A
+JN CTE # JUMPNEGATIVE SI (IT- TAM) <0
+
+INIIF
+JMP CTE # Jump
+END_LOOP
+ 
+INIIF: 
+CARG_ARR:
+MOV ACC, CTE # CARGAR LA constante IT EN ACC
+IT
+MOV DPTR, ACC  # Apuntar a la dirección de ACC
+MOV ACC, [DPTR]  # Cargar IT en ACC
+MOV A, ACC # Mover IT de ACC a A 
+MOV ACC, CTE # Cargar la variable ARR en el ACC
+ARR
+ADD ACC, A # ACC: ARR[0]+ITERADOR
+MOV DPTR, ACC # Apuntar a la dirección de ACC
+MOV ACC, [DPTR] # Mover el A[IT] de ACC a A
+MOV A, ACC # A: A[IT]
+
+GUARD_ARR[IT]:
+MOV ACC, CTE # Cargar la constante AUX en el ACC
+AUX
+MOV DPTR, ACC # Apuntar a la dirección de ACC
+MOV ACC, A # ACC: A[I]
+MOV [DPTR], ACC # Guardar en AUX el contenido de ACC
+
+CARG_K(C2): MOV ACC,CTE # Cargar la constante KEY en el ACC
+KEY
+MOV DPTR,ACC # Apuntar a la dirección de ACC
+MOV ACC,[DPTR]  # Cargar [KEY] en ACC
+INV ACC # C1 DE KEY
+MOV A, ACC # Guardar en A: C1 DE KEY
+MOV ACC, CTE # Cargar la variable Y en el ACC
+Y
+ADD ACC, A # Sumar 1 a ACC: -KEY(C2)
+MOV A,ACC # Mover el C2 de ACC a A
+
+LLAM_AUX: 
+MOV ACC, CTE # Cargar la constante AUX en el ACC
+AUX
+MOV DPTR, ACC # Apuntar a la dirección de ACC
+MOV ACC, [DPTR]  # Cargar [AUX] en ACC
+ADD ACC,A # Sumar KEY(C2) a ACC: AUX+(-KEY)
+ 
+JZ CTE # JumpZero que compara si (AUX- KEY) = 0
+GUARD_IT
+JMP CTE # Jump
+END_IF
+ 
+GUARD_IT: 
+MOV ACC, CTE # Cargar la constante IT en el ACC
+IT
+MOV DPTR, ACC # Apuntar a la dirección de ACC
+MOV ACC, [DPTR]  # Cargar [ITERADOR] en ACC
+MOV A,ACC # Guardar en A lo de ACC
+  
+MOV ACC,CTE # Cargar la constante KEY en el ACC
+KEY
+MOV DPTR,ACC # Apuntar a la dirección de ACC
+MOV ACC,[DPTR] # Cargar [KEY] en ACC
+MOV ACC, A # ACC: ITERADOR
+MOV [DPTR], ACC # Guardar en [KEY]: ITERADOR
+JMP CTE # Jump
+END_LOOP
+
+ 
+END_IF:
+AUM_IT:
+MOV ACC, CTE # Cargar la constante IT en el ACC
+IT
+MOV DPTR, ACC # Apuntar a la dirección de ACC
+MOV ACC, [DPTR]  # Cargar [IT] en ACC
+MOV A, ACC # Guardar en A lo de ACC
+ 
+
+MOV ACC, CTE X # Cargar la constante IT en el ACC
+ADD ACC, A # ACC: ITERADOR+X
+MOV [DPTR], ACC # Guardar en IT lo de ACC
+JMP CTE # Jump
+CARG_TAM
+ 
+ 
+END_LOOP:
+HALT
