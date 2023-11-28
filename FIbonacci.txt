@@ -1,0 +1,187 @@
+MOV ACC, CTE	     # Se carga en el ACC la constante
+0x00                 # Se carga constante, cte=0
+MOV DPTR, ACC	     # Se apunta a la dirección de ACC
+MOV ACC, [DPTR]		 # Se mueve el contenido de dptr a acc
+MOV A, ACC			 # Se carga acc a A
+MOV ACC, CTE		 # Se carga la variable al acc
+T1					 # Se carga la variable T1
+MOV DPTR, ACC		
+MOV ACC, A			 # Se mueve A a ACC
+MOV [DPTR], ACC		 # Se mueve ACC a al contenido de DPTR (T1)
+MOV ACC, CTE         
+0x01                 #Se cargar constante, cte=1
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV A, ACC           #Se mueve ACC a A, A = 1
+MOV ACC, CTE 
+T2                   #Se carga la variable T2
+MOV DPTR, ACC
+MOV ACC, A 
+MOV [DPTR], ACC      #Se mueve ACC=1 a el contenido de DPTR, T2 = 1
+MOV ACC, CTE 		 
+20 					 #Valor de cte=20
+MOV DPTR, ACC 
+MOV ACC. [DPTR] 
+MOV A, ACC			 #Se mueve ACC a A, A = 20
+MOV ACC, CTE 
+N					 #Nombre de la variable
+MOV DPTR, ACC 
+MOV ACC, A
+MOV [DPTR], ACC		 #Se mueve ACC=20 a el contenido de DPTR, N = 20
+MOV ACC, CTE
+0x01
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV A, ACC			 #Se mueve ACC en A, A = 1
+MOV ACC, CTE 
+I
+MOV DPTR, ACC 
+MOV ACC, A 
+MOV [DPTR], ACC
+MOV ACC, CTE 
+0x00
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV A, ACC
+MOV ACC, CTE 
+FIB
+ADD ACC, A           #Se añade A en ACC
+MOV A, ACC			 #Se mueve ACC en A, A = FIB + 0
+MOV ACC, CTE 
+Q
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV ACC, A 
+MOV [DPTR], ACC		 #Se mover ACC a el contenido de DPTR, Q = FIB [0]
+MOV ACC, CTE 
+T1
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV A, ACC			 #Mover ACC en A, A =T1
+MOV ACC, CTE 
+Q
+MOV DPTR, ACC 
+MOV ACC, [DPTR]
+MOV DPTR, ACC 
+MOV ACC, A 
+MOV [DPTR], ACC
+
+LOOP:
+MOV ACC, CTE 
+I
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+INV ACC			    #Se invierte ACC
+MOVE A, ACC			#Se mueve ACC a A, A = [I] C1
+MOV ACC, CTE 
+1
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+ADD ACC, A 			#Sumar A a ACC
+MOV A , ACC			# Mover ACC en A, A = [I] C2
+MOV ACC, CTE 
+N
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+ADD ACC, A
+MOV A, ACC         # Mover ACC en A, A = N - I
+JN CTE			   # JumpNegative
+FIN
+MOV ACC, CTE 
+I
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV A, ACC
+MOV ACC, CTE 
+FIB
+ADD ACC, A 
+MOV A, ACC
+MOV ACC, CTE 
+Q
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV ACC, A 
+MOV [DPTR], ACC
+MOV ACC, CTE 
+T1
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV A, ACC
+MOV ACC, CTE 
+Q
+MOV DPTR, ACC 
+MOV ACC, [DPTR]
+MOV DPTR, ACC 
+MOV ACC, A 
+MOV [DPTR], ACC
+MOV ACC, CTE 
+T2
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV A, ACC
+MOV ACC, CTE 
+T1
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+ADD ACC, A
+MOV A, ACC
+MOV ACC, CTE
+nextTerm
+MOV DTPR, ACC 
+MOV ACC, [DPTR] 
+MOV ACC, A 
+MOV [DPTR], ACC
+MOV ACC, CTE 
+T2
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV A, ACC
+MOV ACC, CTE 
+T1
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV ACC, A 
+MOV [DPTR], ACC
+MOV ACC, CTE
+nextTerm
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV A, ACC
+MOV ACC, CTE 
+T2
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV ACC, A 
+MOV [DPTR], ACC
+MOV ACC, CTE 
+I
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV A, ACC
+MOV ACC, CTE 
+1
+MOVE DPTR, ACC 
+MOV ACC, [DPTR] 
+ADD ACC, A
+MOV A, ACC
+MOV ACC, CTE 
+I
+MOV DPTR, ACC 
+MOV ACC, [DPTR] 
+MOV ACC, A 
+MOV [DTPR], ACC
+JMP CTE
+LOOP
+FIN:
+HALT
+
+
+
+
+
+
+
+
+
+
+
